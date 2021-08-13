@@ -2285,16 +2285,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var refs = {
   input: document.querySelector('.js-input')
 };
-var getCountryInfo = fetch('https://restcountries.eu/rest/v2/name/spain').then(function (response) {
-  return response.json();
-}).then(function (countryName) {
-  // console.log(countryName);
-  var countryCardMarkUp = (0, _templates.default)(countryName); //  console.log(countryCardMarkUp);
+refs.input.addEventListener('input', onInput);
 
-  refs.input.insertAdjacentHTML('afterend', countryCardMarkUp);
-}).catch(function (error) {
+function onInput(e) {
+  e.preventDefault();
+  var inputValue = e.target.value; // e.currentTarget     // e.target.value;
+
+  console.log(inputValue); //   const searchForm = inputValue..query.value;
+}
+
+fetchCountry(inputValue).then(renderCountryCard).catch(function (error) {
   console.log('ERROR');
-}); // console.log(getCountryInfo);s
+});
+
+function fetchCountry(x) {
+  return fetch("https://restcountries.eu/rest/v2/name/".concat(x)).then(function (response) {
+    return response.json();
+  });
+}
+
+function renderCountryCard(countryName) {
+  var countryCardMarkUp = (0, _templates.default)(countryName);
+  refs.input.insertAdjacentHTML('afterend', countryCardMarkUp);
+}
 },{"./scr/templates.hbs":"scr/templates.hbs"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -2323,7 +2336,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49915" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64244" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
