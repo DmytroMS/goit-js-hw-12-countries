@@ -54,6 +54,9 @@
   margin-left: 50px;
 }
 
-.country_list {
+.country_item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   font-size: 25;
 }
